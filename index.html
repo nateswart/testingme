@@ -92,36 +92,227 @@
 
                 <!-- Automation Overview -->
                 <section>
-                    <h2>Automation Overview</h2>
-                    <p>
+                    <section>
+                        <h2>Automation Overview</h2>
+                        <a class="image" href="http://www.flickr.com/photos/flattop341/260207879/" target="_blank">
+                            <img src="images/260207879_c4bc7f9786.jpg" alt="un-manualfication">
+                        </a><br>
+                        <small>Un-Manualification by flattop341, Flickr</small>
+                    </section>
 
-                    </p>
+                    <section>
+                        <h2>Overall Process</h2>
+                        <img src="images/Workflow.png" alt="workflow">
+                    </section>
+
+                    <section>
+                        <h2>Git Master</h2>
+                        <ul>
+                            <li class="fragment">VCS is key</li>
+                            <li class="fragment">Git makes this easy (distributed)</li>
+                            <li class="fragment">Develop locally</li>
+                            <li class="fragment">Execute tests when you push to master</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Cloud Hooks</h2>
+                        <ul>
+                            <li class="fragment">Acquia Cloud technology</li>
+                            <li class="fragment"><a href="http://www.acquia.com/acquia-cloud-free">www.acquia.com/acquia-cloud-free</a></li>
+                            <li class="fragment">Github</li>
+                            <li class="fragment"><a href="http://help.github.com/articles/post-receive-hooks">help.github.com/articles/post-receive-hooks</a></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Installing Cloud Hooks</h2>
+                        <pre><code data-trim contenteditable>
+cd /my/repo
+curl -L -o hooks.tar.gz https://github.com/acquia/cloud-hooks/tarball/master
+tar xzf hooks.tar.gz
+mv acquia-cloud-hooks-* hooks
+git add hooks
+git commit -m 'Import Cloud hooks directory and sample scripts.'
+git push
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Sample Cloud Hook</h2>
+
+                        <pre><code data-trim contenteditable>
+#!/bin/sh
+#
+# Cloud Hook: update-db
+#
+# Run drush updatedb in the target environment. This script works as
+# any Cloud hook.
+site="$1"
+target_env="$2"
+
+drush @$site.$target_env updatedb --yes
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Demo</h2>
+                    </section>
                 </section>
 
                 <!-- Unit Testing -->
                 <section>
-                    <h2>Unit Testing</h2>
-                    <p>
+                    <section>
+                        <h2>Unit Testing</h2>
+                            <a class="image" href="http://www.flickr.com/photos/mag3737/2329710739/" target="_blank">
+                                <img src="images/2329710739_bfe2ce59bd_z.jpg" alt="blocks">
+                            </a><br>
+                            <small>Blocks by mag3737, Flickr</small>
+                    </section>
 
-                    </p>
+                    <section>
+                        <h2>Build the system right</h2>
+                    </section>
+
+                    <section>
+                        <h2>Simpletest</h2>
+                        <ul>
+                            <li class="fragment">Built-in to D7</li>
+                            <li class="fragment">100% test coverage in core</li>
+                            <li class="fragment">Many contrib modules (i.e. Views)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Running a Simpletest</h2>
+                        <pre class="fragment"><code data-trim contenteditable>
+drush test-run Bootstrap
+                        </code></pre>
+                        <pre class="fragment"><code data-trim contenteditable>
+drush test-run Menu
+                        </code></pre>
+                        <pre class="fragment"><code data-trim contenteditable>
+drush test-run Cache
+                        </code></pre>
+                        <p class="fragment">... you get the picture</p>
+                    </section>
+                    
+                    <section>
+	                    <h2>Demo</h2>
+	                </section>
+
                 </section>
+
 
                 <!-- BDD -->
                 <section>
-                    <h2>BDD</h2>
-                    <p>
+                    <section>
+                        <h2>BDD</h2>
+                        <p>
+                            <img src="images/Anthony-Weiner-by-Flickr-user-Talk-Radio-News-Service.jpg" alt="Anthony Weiner">
+                        </p>
+                        <p>
+                            We need more behavioral testing!
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Involve your Business Users</h2>
+                    </section>
+                    <section>
+                        <h2>Gherkin</h2>
+                        <pre class="fragment"><code data-trim contenteditable>
+Feature: Some terse yet descriptive text of what is desired
+         In order to realize a named business value
+         As an explicit system actor
+         I want to gain some beneficial outcome which furthers the goal
+</code></pre>
+<pre class="fragment"><code data-trim contenteditable>
+Scenario: Some determinable business situation
+</code></pre>
+<pre class="fragment"><code data-trim contenteditable>
+Given   some precondition
+</code></pre>
+<pre class="fragment"><code data-trim contenteditable>
+And     some other precondition
+</code></pre>
+<pre class="fragment"><code data-trim contenteditable>
+When    some action by the actor
+</code></pre>
+<pre class="fragment"><code data-trim contenteditable>
+And     some other action
+</code></pre>
+<pre class="fragment"><code data-trim contenteditable>
+Then    some testable outcome is achieved
+                        </code></pre>
+                    </section>
 
-                    </p>
+                    <section>
+                        <h2>Alfred Nutile</h2>
+                        <img src="images/52ffec2934ce4bfc27e81ce63ec2e379.jpeg">
+                        <br />
+                        Gerhkin Generator
+                    </section>
+
+                    <section>
+                        <h2>Demo</h2>
+                    </section>
                 </section>
 
                 <!-- Code Quality -->
                 <section>
+                    <section>
                     <h2>Code Quality</h2>
-                    <p>
+                        <ul>
+                            <li class="fragment">PHPLOC</li>
+                            <li class="fragment">PHP Mess Detector</li>
+                            <li class="fragment">PHP Code Sniffer</li>
+                        </ul>
+                    </section>
 
-                    </p>
+                    <section>
+                        <h2>PHPLOC</h2>
+                        <ul>
+                            <li class="fragment">Files, directories</li>
+                            <li class="fragment">Lines of code, comments, non-commented</li>
+                            <li class="fragment">Method calls, constants, etc</li>
+                            <li class="fragment">Cyclomatic complexity</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Demo</h2>
+                    </section>
+
+                    <section>
+                        <h2>QA?</h2>
+                    </section>
+
+                    <section>
+                        <a class="image" href="http://www.flickr.com/photos/dopey/123646856/" target="_blank">
+                            <img src="images/123646856_89367fecab_z.jpg" alt="blocks">
+                        </a><br>
+                        <small>Test Well by ~db~, Flickr</small>
+                    </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Github Repos</h2>
+                        <ul>
+                            <li><a href="https://github.com/alnutile/behat_editor">https://github.com/alnutile/behat_editor</a></li>
+                            <li><a href="https://github.com/alnutile/behat_editor_saucelabs">https://github.com/alnutile/behat_editor_saucelabs</a></li>
+                            <li><a href="https://github.com/nateswart/code_qa">https://github.com/nateswart/code_qa</a></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Documentation</h2>
+                        <ul>
+                            <li><a href="https://docs.acquia.com/cloud/manage/cloud-hooks">https://docs.acquia.com/cloud/manage/cloud-hooks</a></li>
+                            <li><a href="http://help.github.com/articles/post-receive-hooks">help.github.com/articles/post-receive-hooks</a></li>
+                        </ul>
+                    </section>
+                </section>
 			</div>
 
 		</div>
